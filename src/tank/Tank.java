@@ -4,19 +4,20 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Tank extends ImageObject{
+public class Tank extends ImageObject {
+
     private int[] angle = new int[60];
     private int MAP_HEIGHT = 40;
     private int MAP_WIDTH = 39;
     private int newX = 0;
     private int newY = 0;
-    private int DELTA = 10;    
+    private int DELTA = 10;
     private int degree = 0;
     private int indx = 0;
     private Icon tankDirection;
 
     public Tank(String imageLocation) throws IOException {
-        super(imageLocation);             
+        super(imageLocation);
         tankDirection = new Icon("src/resource/TankImage.png", 64);
     }
 
@@ -32,19 +33,19 @@ public class Tank extends ImageObject{
     }
 
     public boolean collideWithWall(Wall wall) {
-        try {           
+        try {
             wall.setWallMap();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Rectangle tank = new Rectangle(newX,newY,getWidth()-DELTA,getHeight()-DELTA);
+        Rectangle tank = new Rectangle(newX, newY, getWidth() - DELTA, getHeight() - DELTA);
         for (int row = 0; row < MAP_HEIGHT; row++) {
-            for (int col = 0; col < MAP_WIDTH; col++) {                
+            for (int col = 0; col < MAP_WIDTH; col++) {
                 if (wall.getWallMap()[row][col].equals("1") || wall.getWallMap()[row][col].equals("2")) {
 
                     Rectangle walls = new Rectangle(col * wall.getWidth(), row * wall.getHeight(),
-                                    wall.getWidth()-DELTA, wall.getHeight()-DELTA);
+                            wall.getWidth() - DELTA, wall.getHeight() - DELTA);
 
                     if (tank.intersects(walls)) {
                         return true;
@@ -55,15 +56,15 @@ public class Tank extends ImageObject{
 
         return false;
     }
+
     public boolean collideWithTank(Tank anotherTank) {
-        Rectangle tank = new Rectangle(newX,newY,getWidth()-DELTA,getHeight()-DELTA);
+        Rectangle tank = new Rectangle(newX, newY, getWidth() - DELTA, getHeight() - DELTA);
         Rectangle secondTank = new Rectangle(anotherTank.getImageX(), anotherTank.getImageY(),
-                            anotherTank.getWidth()-DELTA, anotherTank.getHeight()-DELTA);
+                anotherTank.getWidth() - DELTA, anotherTank.getHeight() - DELTA);
 
         return tank.intersects(secondTank);
     }
 
-    
     public void rotateRight() {
         if (indx > 0) {
             indx--;
@@ -72,7 +73,7 @@ public class Tank extends ImageObject{
         }
         image = tankDirection.getFrame(indx);
     }
-    
+
     public void rotateLeft() {
         if (indx < 59) {
             indx++;
@@ -82,15 +83,13 @@ public class Tank extends ImageObject{
         image = tankDirection.getFrame(indx);
     }
 
-    
-
     public void reverseMove() {
         newX = this.getImageX() - (int) (Math.cos(Math.toRadians(angle[indx])) * DELTA);
         newY = this.getImageY() + (int) (Math.sin(Math.toRadians(angle[indx])) * DELTA);
     }
-    
-     public void forwardMove() {
-       
+
+    public void forwardMove() {
+
         newX = this.getImageX() + (int) (Math.cos(Math.toRadians(angle[indx])) * DELTA);
         newY = this.getImageY() - (int) (Math.sin(Math.toRadians(angle[indx])) * DELTA);
     }
@@ -106,7 +105,7 @@ public class Tank extends ImageObject{
                 - (int) ((int) (this.getHeight() / 2 * (Math.cos(Math.toRadians(50))))
                 * 2 * (Math.sin(Math.toRadians(this.angle[indx]))));
     }
-    
+
     public int getIndex() {
         return indx;
     }
@@ -123,12 +122,8 @@ public class Tank extends ImageObject{
         return this.newY;
     }
 
-    
-
-    @Override   
-    public void doDrawing( Graphics graphics ) {
-        graphics.drawImage( tankDirection.getFrame(indx), x, y, observer );
+    @Override
+    public void doDrawing(Graphics graphics) {
+        graphics.drawImage(tankDirection.getFrame(indx), x, y, observer);
     }
 }
-
-

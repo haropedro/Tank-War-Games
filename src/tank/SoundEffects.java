@@ -1,23 +1,21 @@
 //plays sound effects
-
 package tank;
 
 import java.io.File;
 import javax.sound.sampled.*;
 
 public class SoundEffects {
-    
-    
-    SoundEffects() {}   
-    
+
+    SoundEffects() {
+    }
+
     /**
-     * method to play music continuously 
+     * method to play music continuously
+     *
      * @param fileName is the file name
-     */   
+     */
     public void play_continously(String fileName) {
-       
-       
-         
+
         File sound = new File(fileName);
         try {
             Clip c = AudioSystem.getClip();
@@ -29,14 +27,14 @@ public class SoundEffects {
         }
 
     }
-    
+
     /**
      * method to play sound just once
+     *
      * @param fileName is the file name
-     */  
-    public void play_once(String fileName) {       
-       
-       
+     */
+    public void play_once(String fileName) {
+
         File sound = new File(fileName);
         try {
             Clip c = AudioSystem.getClip();
@@ -48,4 +46,3 @@ public class SoundEffects {
 
     }
 }
-
