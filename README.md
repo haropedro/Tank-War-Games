@@ -1,4 +1,4 @@
-For Best Result: USE NETBEANS 8.2 and JDK 
+For Best Result: USE NETBEANS 8.2 and JDK 1.8
 
 Introduction: The project consisted of writing a java computer code to build a tank war game. The goal of this game is to destroy the enemy tank. Both players drive his or her own tank.  In the arena, there are breakable and unbreakable walls. Bullets fired by the tanks destroy the breakable walls. Tanks have three lives, with each life having three health levels. The levels have the color codes of green, yellow and red. Health goes down when the tank is hit by a bullet.  For one player the controls for movement are in the arrow keys and the key “ Enter” is to fire a bullet. For the second player the controls are in keys w,a,s,d and space tab is to fire.  Scores are kept. Each life destroyed allows the winner player to score ten points. 
 The packages and their respective classes of the project are the following:
